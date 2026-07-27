@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>影子跟读</title>
+
+<!-- PWA -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="影子跟读">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="manifest" id="pwa-manifest">
+
+<!-- iOS home screen icon (inline SVG as data URI) -->
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: #2a2a3d;
+    --accent: #7c6af7;
+    --accent2: #4ecdc4;
+    --warn: #f7c948;
+    --text: #e8e8f0;
+    --text2: #8888aa;
+    --success: #5af0a0;
+    --radius: 10px;
+    --left-w: 420px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; overflow: hidden; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans SC', sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* iOS safe area for notch + home bar */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* ── Top header bar ── */
+  .header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0; z-index: 10;
+    background: var(--surface);
+  }
+  .logo {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .title { font-size: 16px; font-weight: 700; letter-spacing: 0.05em; }
+  .subtitle { font-size: 11px; color: var(--text2); font-family: 'DM Mono', monospace; }
+
+  /* ── Two-column workspace ── */
+  .workspace {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* ── Left panel (video) ── */
+  .left-panel {
+    width: var(--left-w);
+    min-width: 200px;
+    max-width: 80vw;
+    display: flex;
+    flex-direction: column;
+    background: #000;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  /* audio mode: hide left panel */
+  .workspace.audio-mode .left-panel { display: none; }
+  .workspace.audio-mode .divider     { display: none; }
+
+  .left-panel-inner {
+    flex: 1; min-height: 0;
+    display: flex; flex-direction: column;
+  }
+
+  .video-label {
+    height: 32px; flex-shrink: 0;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; padding: 0 10px;
+    gap: 8px;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--text2); letter-spacing: 0.08em;
+  }
+  .video-label-dot { width: 6px; height: 6px; background: #f75f5f; border-radius: 50%; flex-shrink: 0; }
+  .video-label-actions { margin-left: auto; display: flex; gap: 6px; }
+  .vlabel-btn {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text2); border-radius: 5px;
+    font-family: 'Noto Sans SC', sans-serif; font-size: 11px;
+    padding: 3px 9px; cursor: pointer; transition: all 0.15s;
+    display: flex; align-items: center; gap: 4px; white-space: nowrap;
+  }
+  .vlabel-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(124,106,247,0.08); }
+  .vlabel-close:hover { border-color: #f75f5f; color: #f75f5f; background: rgba(247,95,95,0.08); }
+
+  #videoEl {
+    flex: 1; min-height: 0;
+    width: 100%; display: block;
+    object-fit: contain; background: #000;
+  }
+
+  .video-controls {
+    flex-shrink: 0;
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 12px; background: var(--surface2);
+    border-top: 1px solid var(--border);
+  }
+  .vc-time {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--text2); white-space: nowrap;
+  }
+  .vc-bar-wrap {
+    flex: 1; height: 16px; display: flex; align-items: center; cursor: pointer;
+  }
+  .vc-bar {
+    width: 100%; height: 3px; background: var(--border);
+    border-radius: 2px; position: relative; overflow: hidden;
+  }
+  .vc-seg-highlight {
+    position: absolute; height: 100%; top: 0;
+    background: rgba(78,205,196,0.5); border-radius: 2px;
+    pointer-events: none; display: none;
+  }
+  .vc-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    width: 0%; border-radius: 2px; position: relative; z-index: 1;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    width: 5px; flex-shrink: 0;
+    background: var(--border);
+    cursor: col-resize;
+    position: relative;
+    transition: background 0.15s;
+  }
+  .divider:hover, .divider.dragging { background: var(--accent); }
+  .divider::after {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3px; height: 32px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.12);
+  }
+
+  /* ── Right panel (sentences) ── */
+  .right-panel {
+    flex: 1; min-width: 0;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+
+  .right-scroll {
+    flex: 1; overflow-y: auto;
+    padding: 16px 18px 40px;
+  }
+
+  /* Upload zone — shown inside right panel before upload */
+  .upload-zone {
+    border: 1.5px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 40px 24px; text-align: center;
+    cursor: pointer; transition: all 0.2s;
+    background: var(--surface); margin-bottom: 16px; position: relative;
+  }
+  .upload-zone:hover, .upload-zone.drag-over {
+    border-color: var(--accent); background: rgba(124,106,247,0.06);
+  }
+  .upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+  .upload-icon { font-size: 32px; margin-bottom: 10px; }
+  .upload-title { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+  .upload-hint { font-size: 12px; color: var(--text2); font-family: 'DM Mono', monospace; }
+
+  /* Processing */
+  .processing {
+    display: none; align-items: center; gap: 10px;
+    padding: 12px 16px; background: var(--surface);
+    border-radius: var(--radius); margin-bottom: 14px;
+    font-size: 13px; color: var(--text2);
+    border: 1px solid var(--border);
+  }
+  .processing.show { display: flex; }
+  .spin {
+    width: 15px; height: 15px; flex-shrink: 0;
+    border: 2px solid var(--border); border-top-color: var(--accent);
+    border-radius: 50%; animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* File info */
+  .file-info {
+    display: none; align-items: center; gap: 8px;
+    padding: 8px 12px; background: var(--surface2);
+    border-radius: var(--radius); margin-bottom: 14px;
+    font-size: 12px; color: var(--text2); border: 1px solid var(--border);
+  }
+  .file-info.show { display: flex; }
+  .file-dot { width: 6px; height: 6px; background: var(--success); border-radius: 50%; flex-shrink: 0; }
+  .file-actions { margin-left: auto; display: flex; gap: 6px; flex-shrink: 0; }
+  .file-action-btn {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text2); border-radius: 5px;
+    font-family: 'Noto Sans SC', sans-serif; font-size: 11px;
+    padding: 3px 9px; cursor: pointer; transition: all 0.15s;
+    display: flex; align-items: center; gap: 4px; white-space: nowrap;
+  }
+  .file-action-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(124,106,247,0.08); }
+  .file-action-close:hover { border-color: #f75f5f; color: #f75f5f; background: rgba(247,95,95,0.08); }
+
+  .section-title {
+    font-size: 11px; color: var(--text2); font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 10px; padding-left: 2px;
+  }
+
+  /* ── Cards ── */
+  .sentences { display: flex; flex-direction: column; gap: 10px; }
+  .sentence-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden; transition: border-color 0.2s;
+    position: relative;
+  }
+  .sentence-card.active { border-color: var(--accent); }
+  .sentence-card.recording { border-color: #f75f5f; }
+  .sentence-card.selected { outline: 2px solid rgba(78,205,196,0.5); outline-offset: -1px; }
+
+  .card-main {
+    display: grid; grid-template-columns: 28px 1fr auto;
+    align-items: center; gap: 12px; padding: 11px 12px;
+  }
+  .seq { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text2); text-align: center; }
+  .card-body { min-width: 0; }
+
+  .ts-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--accent2); background: rgba(78,205,196,0.08);
+    border: 1px solid rgba(78,205,196,0.2);
+    border-radius: 4px; padding: 2px 6px;
+    margin-bottom: 7px; letter-spacing: 0.02em;
+  }
+
+  .controls { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+  .btn {
+    border: none; cursor: pointer; font-family: 'Noto Sans SC', sans-serif;
+    transition: all 0.15s; border-radius: 6px; font-size: 12px; font-weight: 500;
+    display: flex; align-items: center; gap: 4px; padding: 4px 10px;
+  }
+  .btn:active { transform: scale(0.96); }
+
+  .btn-play { background: rgba(124,106,247,0.15); color: var(--accent); border: 1px solid rgba(124,106,247,0.3); }
+  .btn-play:hover { background: rgba(124,106,247,0.25); }
+  .btn-play.playing { background: var(--accent); color: #fff; }
+
+  .speed-ctrl {
+    display: flex; align-items: center; gap: 3px;
+    background: var(--surface2); border-radius: 6px;
+    padding: 2px; border: 1px solid var(--border);
+  }
+  .speed-btn {
+    width: 20px; height: 20px; background: transparent; color: var(--text2);
+    border: none; cursor: pointer; border-radius: 4px; font-size: 13px;
+    display: flex; align-items: center; justify-content: center; transition: all 0.15s;
+  }
+  .speed-btn:hover { background: var(--border); color: var(--text); }
+  .speed-val { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent2); min-width: 30px; text-align: center; }
+
+  .btn-record { background: rgba(247,95,95,0.12); color: #f75f5f; border: 1px solid rgba(247,95,95,0.3); }
+  .btn-record:hover { background: rgba(247,95,95,0.2); }
+  .btn-record.recording { background: #f75f5f; color: #fff; animation: pulse-red 1s infinite; }
+  @keyframes pulse-red {
+    0%,100% { box-shadow: 0 0 0 0 rgba(247,95,95,0.4); }
+    50%      { box-shadow: 0 0 0 5px rgba(247,95,95,0); }
+  }
+
+  .btn-replay { background: rgba(78,205,196,0.1); color: var(--accent2); border: 1px solid rgba(78,205,196,0.25); }
+  .btn-replay:hover:not(:disabled) { background: rgba(78,205,196,0.2); }
+  .btn-replay.playing { background: var(--accent2); color: #000; }
+  .btn-replay-empty, .btn-replay:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .btn-transcribe { background: rgba(247,201,72,0.1); color: var(--warn); border: 1px solid rgba(247,201,72,0.25); }
+  .btn-transcribe:hover { background: rgba(247,201,72,0.2); }
+  .btn-transcribe.loading { opacity: 0.45; pointer-events: none; }
+  .btn-transcribe.done { background: rgba(90,240,160,0.1); color: var(--success); border-color: rgba(90,240,160,0.25); }
+
+  .btn-split { background: rgba(124,106,247,0.08); color: var(--text2); border: 1px solid var(--border); }
+  .btn-split:hover { background: rgba(124,106,247,0.15); color: var(--accent); border-color: rgba(124,106,247,0.3); }
+  .btn-split.splitting { opacity: 0.5; pointer-events: none; }
+
+  /* ── Echo overlay ── */
+  .echo-overlay {
+    display: none;
+    position: absolute; inset: 0; z-index: 10;
+    background: rgba(10,10,15,0.93);
+    border-radius: var(--radius);
+    flex-direction: row;
+    align-items: center; justify-content: center;
+    gap: 20px;
+    cursor: pointer;
+    padding: 0 24px;
+  }
+  .echo-overlay.show { display: flex; }
+
+  .echo-ring-wrap {
+    position: relative;
+    width: 44px; height: 44px;
+    flex-shrink: 0;
+  }
+  .echo-ring-wrap svg { transform: rotate(-90deg); }
+  .echo-arc {
+    fill: none; stroke-width: 3.5; stroke-linecap: round;
+    stroke: var(--accent2);
+  }
+  .echo-ring-bg { fill: none; stroke-width: 3.5; stroke: rgba(255,255,255,0.08); }
+
+  .echo-text { display: flex; flex-direction: column; gap: 3px; }
+  .echo-label {
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent2);
+  }
+  .echo-hint { font-size: 11px; color: var(--text2); }
+
+  /* Ripple on the ring */
+  .echo-ripple {
+    position: absolute; inset: -6px;
+    border-radius: 50%;
+    border: 1px solid var(--accent2);
+    opacity: 0;
+    animation: ripple-out 2s ease-out infinite;
+  }
+  .echo-ripple:nth-child(2) { animation-delay: 0.7s; }
+  .echo-ripple:nth-child(3) { animation-delay: 1.4s; }
+  @keyframes ripple-out {
+    0%   { transform: scale(0.8);  opacity: 0.45; }
+    100% { transform: scale(1.8);  opacity: 0; }
+  }
+
+  /* Count ring */
+  .card-count { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 52px; }
+  .count-ring { position: relative; width: 44px; height: 44px; }
+  .count-ring svg { transform: rotate(-90deg); }
+  .count-ring circle { fill: none; stroke-width: 3; }
+  .ring-bg { stroke: var(--border); }
+  .ring-fill { stroke: var(--accent); stroke-linecap: round; transition: stroke-dashoffset 0.4s ease; }
+  .count-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--text); }
+  .count-goal { font-size: 10px; color: var(--text2); font-family: 'DM Mono', monospace; }
+
+  /* Waveform */
+  .waveform-bar { height: 3px; background: var(--surface2); margin: 0 12px; border-radius: 2px; overflow: hidden; display: none; }
+  .waveform-bar.show { display: block; }
+  .waveform-progress { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); width: 0%; border-radius: 2px; }
+
+  /* Milestones */
+  .milestones { display: none; padding: 0 12px 10px 52px; gap: 6px; }
+  .milestones.has-data { display: flex; flex-wrap: wrap; }
+  .milestone { background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; padding: 3px 9px; font-size: 11px; font-family: 'DM Mono', monospace; color: var(--text2); cursor: pointer; transition: all 0.15s; }
+  .milestone:hover { border-color: var(--accent2); color: var(--accent2); }
+  .milestone .m-label { color: var(--accent2); font-weight: 500; }
+
+  /* Transcription */
+  .transcription-panel { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 12px 0 52px; }
+  .transcription-panel.open { max-height: 200px; padding: 0 12px 10px 52px; }
+  .transcription-inner { background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 9px 12px; font-size: 13px; line-height: 1.7; color: var(--text); position: relative; }
+  .t-loading { display: flex; align-items: center; gap: 8px; color: var(--text2); font-size: 12px; }
+  .t-copy { position: absolute; top: 7px; right: 7px; background: transparent; border: none; color: var(--text2); cursor: pointer; font-size: 12px; padding: 2px 5px; border-radius: 4px; transition: all 0.15s; }
+  .t-copy:hover { background: var(--border); color: var(--text); }
+
+  /* Toast */
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(70px); background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 9px 16px; font-size: 13px; transition: transform 0.3s ease; z-index: 300; white-space: nowrap; pointer-events: none; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  .empty-hint { text-align: center; padding: 50px 20px; color: var(--text2); font-size: 13px; display: none; }
+  .empty-hint.show { display: block; }
+  .empty-big { font-size: 32px; margin-bottom: 10px; }
+
+  /* Upload placeholder in left panel for video mode */
+  .left-upload-placeholder {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    color: var(--text2); font-size: 12px; font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">🎧</div>
+  <div>
+    <div class="title">影子跟读</div>
+    <div class="subtitle">Shadow Reading · 100x Practice</div>
+  </div>
+</div>
+
+<div class="workspace audio-mode" id="workspace">
+
+  <!-- Left: video panel -->
+  <div class="left-panel" id="leftPanel">
+    <div class="left-panel-inner">
+      <div class="video-label">
+        <div class="video-label-dot"></div>
+        <span>VIDEO</span>
+        <div class="video-label-actions">
+          <label class="vlabel-btn" title="打开其他音视频">
+            <input type="file" id="fileInputAlt" accept="audio/*,video/*" style="display:none">
+            📂 打开
+          </label>
+          <button class="vlabel-btn vlabel-close" onclick="resetAll()" title="关闭当前文件">✕ 关闭</button>
+        </div>
+      </div>
+      <video id="videoEl" preload="metadata" playsinline></video>
+      <div class="video-controls">
+        <span class="vc-time" id="vcTime">0:00 / 0:00</span>
+        <div class="vc-bar-wrap" id="vcBarWrap" onclick="seekVideo(event)">
+          <div class="vc-bar">
+            <div class="vc-seg-highlight" id="vcSegHL"></div>
+            <div class="vc-fill" id="vcFill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="divider" id="divider"></div>
+
+  <!-- Right: sentences panel -->
+  <div class="right-panel">
+    <div class="right-scroll" id="rightScroll">
+
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="fileInput" accept="audio/*,video/*">
+        <div class="upload-icon">🎵</div>
+        <div class="upload-title">上传音频或视频文件</div>
+        <div class="upload-hint">MP3 / WAV / M4A · MP4 / MOV / WEBM · 点击或拖拽</div>
+      </div>
+
+      <div class="processing" id="processing">
+        <div class="spin"></div>
+        <span id="processingText">正在分析，分割句子…</span>
+      </div>
+
+      <div class="file-info" id="fileInfo">
+        <div class="file-dot"></div>
+        <span id="fileInfoText"></span>
+        <div class="file-actions">
+          <label class="file-action-btn" title="打开其他音视频">
+            <input type="file" id="fileInputRight" accept="audio/*,video/*" style="display:none">
+            📂 打开
+          </label>
+          <button class="file-action-btn file-action-close" onclick="resetAll()" title="关闭">✕ 关闭</button>
+        </div>
+      </div>
+
+      <div class="section-title" id="listTitle" style="display:none">句子列表</div>
+      <div class="sentences" id="sentences"></div>
+      <div class="empty-hint" id="emptyHint"></div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+(function() {
+  const divider = document.getElementById('divider');
+  const leftPanel = document.getElementById('leftPanel');
+  let dragging = false, startX, startW;
+
+  function onDown(clientX) {
+    dragging = true;
+    startX = clientX;
+    startW = leftPanel.offsetWidth;
+    divider.classList.add('dragging');
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+  }
+  function onMove(clientX) {
+    if (!dragging) return;
+    const delta = clientX - startX;
+    const newW = Math.max(180, Math.min(window.innerWidth * 0.75, startW + delta));
+    leftPanel.style.width = newW + 'px';
+    document.documentElement.style.setProperty('--left-w', newW + 'px');
+  }
+  function onUp() {
+    dragging = false;
+    divider.classList.remove('dragging');
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  }
+
+  divider.addEventListener('mousedown', e => { onDown(e.clientX); e.preventDefault(); });
+  document.addEventListener('mousemove', e => onMove(e.clientX));
+  document.addEventListener('mouseup', onUp);
+
+  divider.addEventListener('touchstart', e => { onDown(e.touches[0].clientX); }, { passive: true });
+  document.addEventListener('touchmove', e => { if (dragging) onMove(e.touches[0].clientX); }, { passive: true });
+  document.addEventListener('touchend', onUp);
+})();
+
+
+const MILESTONES = [1,3,5,10,15,20,30,40,50,70,90,100];
+const GOAL = 100;
+const SPEEDS = [0.5,0.6,0.7,0.8,0.9,1.0,1.2,1.5,2.0];
+
+// ─── State ────────────────────────────────────────────────────────────
+let segments = [];
+let mediaMode = 'audio'; // 'audio' | 'video'
+
+// Audio
+let masterBuffer = null;
+let audioCtx = null;
+let currentSource = null;
+let currentPlayingIdx = -1;
+
+// Video
+const videoEl = document.getElementById('videoEl');
+let videoObjectURL = null;
+let videoAudioBuffer = null; // decoded audio from video for VAD + transcription
+let videoStopTimer = null;
+let videoPlayingIdx = -1;
+
+// Shared
+let recordingIdx = -1;
+let mediaRecorder = null;
+let recordChunks = [];
+let playbackRates = {};
+let selectedIdx = -1; // currently selected segment (space bar target)
+
+// ─── Upload ───────────────────────────────────────────────────────────
+const fileInput = document.getElementById('fileInput');
+const uploadZone = document.getElementById('uploadZone');
+
+uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
+uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag-over'));
+uploadZone.addEventListener('drop', e => {
+  e.preventDefault(); uploadZone.classList.remove('drag-over');
+  if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', e => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+document.getElementById('fileInputAlt').addEventListener('change', e => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+document.getElementById('fileInputRight').addEventListener('change', e => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+
+async function handleFile(file) {
+  const isVideo = file.type.startsWith('video/');
+  const isAudio = file.type.startsWith('audio/');
+  if (!isVideo && !isAudio) { showToast('请上传音频或视频文件'); return; }
+
+  // Soft-reset: stop playback/recording, clear segments, keep UI alive
+  if (mediaMode === 'audio') stopAudioPlay(); else stopVideoPlay();
+  stopRecording();
+  segments = []; masterBuffer = null; videoAudioBuffer = null;
+  document.getElementById('sentences').innerHTML = '';
+  document.getElementById('fileInfo').classList.remove('show');
+  document.getElementById('listTitle').style.display = 'none';
+
+  mediaMode = isVideo ? 'video' : 'audio';
+
+  // Show/hide left panel based on new mode
+  const ws = document.getElementById('workspace');
+  if (isVideo) ws.classList.remove('audio-mode');
+  else {
+    ws.classList.add('audio-mode');
+    if (videoObjectURL) { URL.revokeObjectURL(videoObjectURL); videoObjectURL = null; }
+    videoEl.src = ''; videoEl.load();
+  }
+  videoEl.style.display = '';
+
+  document.getElementById('processingText').textContent = `正在分析${isVideo ? '视频' : '音频'}，分割句子…`;
+  document.getElementById('processing').classList.add('show');
+  uploadZone.style.display = 'none';
+  document.getElementById('emptyHint').classList.remove('show');
+
+  try {
+    // Decode audio for VAD
+    const ctx = getAudioCtx();
+    if (ctx.state === 'suspended') { try { await ctx.resume(); } catch(e){} }
+    const ab = await readFileAsArrayBuffer(file);
+    const decoded = await decodeAudioSafe(ctx, ab);
+
+    if (isVideo) {
+      videoAudioBuffer = decoded;
+      if (videoObjectURL) URL.revokeObjectURL(videoObjectURL);
+      videoObjectURL = URL.createObjectURL(file);
+      videoEl.src = videoObjectURL;
+      await new Promise((res, rej) => {
+        videoEl.onloadedmetadata = res;
+        videoEl.onerror = (e) => {
+          const err = videoEl.error;
+          const msg = err ? `code=${err.code} msg=${err.message}` : String(e);
+          console.error('video error event', e, videoEl.error);
+          rej(new Error('视频加载失败: ' + msg));
+        };
+        setTimeout(() => rej(new Error('加载超时')), 15000);
+      });
+      // Re-attach progress listeners (old ones auto-removed when src changed)
+      setupVideoProgress();
+    } else {
+      masterBuffer = decoded;
+    }
+
+    const buf = isVideo ? videoAudioBuffer : masterBuffer;
+    const segs = await detectSentences(buf);
+    finishLoad(segs, file.name, buf.duration);
+  } catch(e) {
+    console.error(e);
+    document.getElementById('processing').classList.remove('show');
+    uploadZone.style.display = '';
+    showToast('解析失败：' + e.message);
+  }
+}
+
+// ─── Audio context ────────────────────────────────────────────────────
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return audioCtx;
+}
+// iOS compat: older Safari lacks Blob.arrayBuffer() and the promise form of decodeAudioData
+function readFileAsArrayBuffer(file){
+  if (file.arrayBuffer) return file.arrayBuffer();
+  return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=()=>rej(new Error('文件读取失败')); r.readAsArrayBuffer(file); });
+}
+function decodeAudioSafe(ctx, ab){
+  return new Promise((res,rej)=>{ let done=false;
+    const ok=d=>{ if(!done){done=true;res(d);} }; const bad=e=>{ if(!done){done=true;rej(e||new Error('解码失败'));} };
+    try { const p=ctx.decodeAudioData(ab, ok, bad); if(p&&p.then) p.then(ok).catch(bad); } catch(e){ bad(e); }
+  });
+}
+
+// ─── Video progress ───────────────────────────────────────────────────
+function setupVideoProgress() {
+  videoEl.addEventListener('timeupdate', onVideoTimeUpdate);
+  videoEl.addEventListener('ended', onVideoEnded);
+}
+
+function onVideoTimeUpdate() {
+  const d = videoEl.duration || 0;
+  const c = videoEl.currentTime;
+  document.getElementById('vcFill').style.width = d ? (c/d*100)+'%' : '0%';
+  document.getElementById('vcTime').textContent = fmtTime(c) + ' / ' + fmtTime(d);
+}
+
+function onVideoEnded() {
+  if (videoPlayingIdx >= 0) { clearVideoActive(videoPlayingIdx); videoPlayingIdx = -1; }
+}
+
+function seekVideo(e) {
+  if (!videoEl.duration) return;
+  const rect = document.getElementById('vcBarWrap').getBoundingClientRect();
+  videoEl.currentTime = ((e.clientX - rect.left) / rect.width) * videoEl.duration;
+}
+
+function showSegHighlight(i) {
+  const hl = document.getElementById('vcSegHL');
+  const d = videoEl.duration;
+  if (!d) { hl.style.display='none'; return; }
+  const seg = segments[i];
+  hl.style.display = '';
+  hl.style.left = (seg.start/d*100)+'%';
+  hl.style.width = ((seg.end-seg.start)/d*100)+'%';
+}
+
+// ─── VAD ─────────────────────────────────────────────────────────────
+// Key idea: find the raw speech regions (no padding), then for each gap
+// between consecutive regions distribute the silence naturally:
+//   • give the LAST 30% of the silence to the preceding sentence (tail)
+//   • give the FIRST 30% of the silence to the next sentence (lead-in)
+//   • discard the middle 40% — that dead air belongs to neither sentence
+// This way playback of each sentence sounds natural on both ends.
+async function detectSentences(buffer) {
+  const data = buffer.getChannelData(0);
+  const sr   = buffer.sampleRate;
+  const dur  = buffer.duration;
+  const fSz  = Math.floor(sr * 0.02);  // 20 ms frame
+  const hop  = Math.floor(sr * 0.01);  // 10 ms hop
+
+  // ── 1. Short-time RMS energy ──────────────────────────────────────
+  const E = [];
+  for (let i = 0; i + fSz < data.length; i += hop) {
+    let s = 0;
+    for (let j = 0; j < fSz; j++) s += data[i + j] ** 2;
+    E.push(Math.sqrt(s / fSz));
+  }
+
+  // ── 2. Adaptive threshold: noise floor × multiplier ───────────────
+  // Use the 15th percentile of all energy as an estimate of silence level.
+  const sorted = [...E].sort((a, b) => a - b);
+  const noiseFl = sorted[Math.floor(sorted.length * 0.15)];
+  const thr = noiseFl * 3.5;   // speech must be 3.5× above noise floor
+
+  // ── 3. Smooth the speech/silence decision with 80 ms hang-over ────
+  // Hang-over: once speech starts, keep it "on" for HANGOVER frames
+  // after the last speech frame. Prevents cutting mid-word.
+  const HANGOVER = Math.floor(0.08 / 0.01); // 8 frames = 80 ms
+  const isSpeech = E.map(e => e > thr);
+  let hang = 0;
+  const smoothed = isSpeech.map(s => {
+    if (s) { hang = HANGOVER; return true; }
+    if (hang > 0) { hang--; return true; }
+    return false;
+  });
+
+  // ── 4. Extract raw speech regions [sfFrame, efFrame] ─────────────
+  // A "region" starts on the first smoothed-speech frame and ends on
+  // the last smoothed-speech frame before a silence of ≥ MIN_SIL.
+  const MIN_SIL  = Math.floor(0.30 / 0.01); // 30 frames = 300 ms gap to split
+  const MIN_SPK  = Math.floor(0.40 / 0.01); // 40 frames = 400 ms min speech
+
+  const regions = [];   // {sf, ef} in frame indices
+  let inS = false, sStart = 0, silCount = 0;
+
+  for (let k = 0; k < smoothed.length; k++) {
+    if (!inS && smoothed[k]) {
+      inS = true; sStart = k; silCount = 0;
+    } else if (inS) {
+      if (!smoothed[k]) {
+        silCount++;
+        if (silCount >= MIN_SIL) {
+          const ef = k - silCount;          // last speech frame (exclusive sil)
+          if (ef - sStart >= MIN_SPK) regions.push({ sf: sStart, ef });
+          inS = false; silCount = 0;
+        }
+      } else {
+        silCount = 0;
+      }
+    }
+  }
+  if (inS) regions.push({ sf: sStart, ef: smoothed.length - 1 });
+  if (!regions.length) return [{ start: 0, end: dur }];
+
+  // ── 5. Distribute silence between consecutive regions ─────────────
+  // For each silence gap between region[k].ef and region[k+1].sf:
+  //   • region[k]   gets frames [ef … ef + floor(gapLen * 0.30)]
+  //   • region[k+1] gets frames [sf - floor(gapLen * 0.30) … sf]
+  // Both sentences get a bit of natural silence on their edge.
+  // The dead centre of a long pause is discarded entirely.
+  const TAIL_FRAC = 0.30;   // fraction of silence given to the trailing sentence
+  const LEAD_FRAC = 0.30;   // fraction of silence given to the leading sentence
+
+  const segs = regions.map((r, idx) => {
+    let startF = r.sf;
+    let endF   = r.ef;
+
+    // Leading silence from previous gap
+    if (idx > 0) {
+      const prevEf = regions[idx - 1].ef;
+      const gap    = r.sf - prevEf;
+      startF = prevEf + Math.floor(gap * (1 - LEAD_FRAC));
+    } else {
+      // First segment: include a little lead-in from absolute start
+      startF = Math.max(0, r.sf - Math.floor(0.05 / 0.01));
+    }
+
+    // Trailing silence into next gap
+    if (idx < regions.length - 1) {
+      const nextSf = regions[idx + 1].sf;
+      const gap    = nextSf - r.ef;
+      endF = r.ef + Math.floor(gap * TAIL_FRAC);
+    } else {
+      // Last segment: extend to end of audio
+      endF = Math.min(E.length - 1, r.ef + Math.floor(0.1 / 0.01));
+    }
+
+    return {
+      start: Math.max(0,   startF * 0.01),
+      end:   Math.min(dur, endF   * 0.01),
+    };
+  });
+
+  // ── 6. Merge very short segments (< 0.8 s) into neighbour ─────────
+  const merged = [segs[0]];
+  for (let k = 1; k < segs.length; k++) {
+    const last = merged[merged.length - 1];
+    const cur  = segs[k];
+    if (cur.end - cur.start < 0.8 || last.end - last.start < 0.8) {
+      last.end = cur.end;
+    } else {
+      merged.push(cur);
+    }
+  }
+
+  // ── 7. Split segments > 9 s at deepest silence in middle half ─────
+  const MAX_DUR = 9.0;
+  const result  = [];
+  for (const seg of merged) {
+    if (seg.end - seg.start <= MAX_DUR) { result.push(seg); continue; }
+
+    const f0 = Math.floor(seg.start / 0.01);
+    const f1 = Math.floor(seg.end   / 0.01);
+    const lo = Math.floor(f0 + (f1 - f0) * 0.25);
+    const hi = Math.floor(f0 + (f1 - f0) * 0.75);
+
+    let bestLen = 0, bestMid = Math.floor((f0 + f1) / 2);
+    let runLen = 0, runStart = lo;
+    for (let f = lo; f < hi; f++) {
+      if (!smoothed[f]) {
+        if (runLen === 0) runStart = f;
+        runLen++;
+        if (runLen > bestLen) { bestLen = runLen; bestMid = runStart + Math.floor(runLen / 2); }
+      } else { runLen = 0; }
+    }
+
+    const splitT = bestMid * 0.01;
+    if (splitT > seg.start + 1 && splitT < seg.end - 1) {
+      result.push({ start: seg.start, end: splitT });
+      result.push({ start: splitT,    end: seg.end  });
+    } else {
+      result.push(seg);
+    }
+  }
+
+  return result;
+}
+
+// ─── Finish load ──────────────────────────────────────────────────────
+function finishLoad(segs, filename, duration) {
+  segments = segs.map((s,i)=>({...s,id:i,count:0,recordings:{},transcriptStatus:'loading'}));
+  playbackRates = {};
+  segments.forEach((_,i)=>playbackRates[i]=1.0);
+  document.getElementById('processing').classList.remove('show');
+  document.getElementById('fileInfo').classList.add('show');
+  document.getElementById('fileInfoText').textContent =
+    `${filename} · ${segments.length} 句 · ${fmtTime(duration)} · ${mediaMode==='video'?'📹 视频':'🎵 音频'}`;
+  document.getElementById('listTitle').style.display='';
+  renderSentences();
+  showToast(`✓ 检测到 ${segs.length} 个句子`);
+  transcribeAllSegments();
+}
+
+// ─── Render ───────────────────────────────────────────────────────────
+function renderSentences() {
+  const c=document.getElementById('sentences'); c.innerHTML='';
+  segments.forEach((seg,i)=>c.appendChild(createCard(seg,i)));
+}
+
+function createCard(seg,i) {
+  const card=document.createElement('div');
+  card.className='sentence-card'; card.id=`card-${i}`;
+  const pct=Math.min(seg.count/GOAL*100,100);
+  const C=2*Math.PI*20; const off=C*(1-pct/100);
+  const hasMil=Object.keys(seg.recordings).length>0;
+  const milHTML=MILESTONES.filter(m=>seg.recordings[m])
+    .map(m=>`<div class="milestone" onclick="playMilestone(${i},${m})"><span class="m-label">#${m}</span></div>`).join('');
+  const rate=playbackRates[i]||1.0;
+  const ts=seg.transcriptStatus;
+  card.innerHTML=`
+    <div class="card-main">
+      <div class="seq">${String(i+1).padStart(2,'0')}</div>
+      <div class="card-body">
+        <div><span class="ts-badge">${fmtTime(seg.start)} → ${fmtTime(seg.end)}</span></div>
+        <div class="controls">
+          <button class="btn btn-play" id="play-${i}" onclick="togglePlay(${i})">
+            <span id="play-icon-${i}">▶</span> 播放
+          </button>
+          <div class="speed-ctrl">
+            <button class="speed-btn" onclick="changeSpeed(${i},-1)">−</button>
+            <span class="speed-val" id="speed-${i}">${rate}x</span>
+            <button class="speed-btn" onclick="changeSpeed(${i},1)">+</button>
+          </div>
+          <button class="btn btn-record" id="rec-${i}" onclick="toggleRecord(${i})">
+            <span>🎤</span> 跟读
+          </button>
+          <button class="btn btn-replay ${seg.allRecordings&&seg.allRecordings.length?'':'btn-replay-empty'}" id="replay-${i}" onclick="toggleReplay(${i})" ${seg.allRecordings&&seg.allRecordings.length?'':'disabled'}>
+            <span>▶</span> 回放
+          </button>
+          <button class="btn btn-transcribe ${ts==='done'?'done':ts==='loading'?'loading':''}" id="tr-btn-${i}" onclick="toggleTranscription(${i})"${!SR_USABLE?' style="opacity:0.4" title="iOS Safari 暂不支持本地转写"':''}>
+            <span>${ts==='done'?'📄':'✦'}</span> 转写
+          </button>
+          <button class="btn btn-split" onclick="splitSegment(${i})" title="把这句切得更短">✂ 再切</button>
+        </div>
+      </div>
+      <div class="card-count">
+        <div class="count-ring">
+          <svg width="48" height="48" viewBox="0 0 48 48">
+            <circle class="ring-bg" cx="24" cy="24" r="20" stroke-dasharray="${C}"/>
+            <circle class="ring-fill" cx="24" cy="24" r="20" stroke-dasharray="${C}" stroke-dashoffset="${off}" stroke="${pct>=100?'var(--success)':'var(--accent)'}"/>
+          </svg>
+          <div class="count-num">${seg.count}</div>
+        </div>
+        <div class="count-goal">/ ${GOAL}</div>
+      </div>
+    </div>
+    <div class="waveform-bar" id="wave-${i}"><div class="waveform-progress" id="waveprog-${i}"></div></div>
+    <div class="milestones ${hasMil?'has-data':''}" id="milestones-${i}">${milHTML}</div>
+    <div class="transcription-panel ${seg.transcriptOpen?'open':''}" id="tr-panel-${i}">
+      <div class="transcription-inner" id="tr-inner-${i}">
+        ${ts==='done'&&seg.transcript
+          ?`<button class="t-copy" onclick="copyTranscript(${i})">⎘</button><div class="t-text">${seg.transcript}</div>`
+          :ts==='error'
+          ?`<div class="t-loading" style="color:#f75f5f">⚠ ${seg.transcriptError||'转写失败'}</div>`
+          :'<div class="t-loading"><div class="spin"></div> 转写中…</div>'}
+      </div>
+    </div>
+    <div class="echo-overlay" id="echo-${i}" onclick="skipEcho(${i})">
+      <div class="echo-ring-wrap">
+        <div class="echo-ripple"></div>
+        <div class="echo-ripple"></div>
+        <div class="echo-ripple"></div>
+        <svg width="44" height="44" viewBox="0 0 44 44">
+          <circle class="echo-ring-bg" cx="22" cy="22" r="18"/>
+          <circle class="echo-arc" id="echo-arc-${i}" cx="22" cy="22" r="18"
+            stroke-dasharray="${2*Math.PI*18}"
+            stroke-dashoffset="${2*Math.PI*18}"/>
+        </svg>
+      </div>
+      <div class="echo-text">
+        <div class="echo-label">Echo…</div>
+        <div class="echo-hint">在脑中回响 · 点击或空格跳过</div>
+      </div>
+    </div>`;
+  return card;
+}
+
+// ─── Echo phase ───────────────────────────────────────────────────────
+// echoDuration: how long the echo window lasts (scales with sentence length)
+//   short sentence (≤2s)  → 1.5s echo
+//   medium (2-6s)         → sentence_dur × 0.7
+//   long (>6s)            → capped at 4s
+function echoMs(segDur) {
+  if (segDur <= 2)  return 1500;
+  if (segDur <= 6)  return Math.round(segDur * 700);
+  return 4000;
+}
+
+let echoTimer = null;
+let echoRaf   = null;
+let echoIdx   = -1;
+
+function startEcho(i) {
+  cancelEcho();
+  echoIdx = i;
+  const seg   = segments[i];
+  const ms    = echoMs(seg.end - seg.start);
+  const circ  = 2 * Math.PI * 18;
+  const arc   = document.getElementById(`echo-arc-${i}`);
+  const overlay = document.getElementById(`echo-${i}`);
+  if (!overlay) return;
+
+  overlay.classList.add('show');
+  document.getElementById(`card-${i}`)?.classList.add('echoing');
+
+  const t0 = performance.now();
+  function frame(now) {
+    const pct = Math.min((now - t0) / ms, 1);
+    // Arc fills up as echo time passes (offset goes from full → 0)
+    if (arc) arc.style.strokeDashoffset = circ * (1 - pct);
+    if (pct < 1) {
+      echoRaf = requestAnimationFrame(frame);
+    } else {
+      finishEcho(i);
+    }
+  }
+  echoRaf = requestAnimationFrame(frame);
+}
+
+function skipEcho(i) {
+  if (echoIdx !== i) return;
+  cancelEcho();
+  finishEcho(i);
+}
+
+function cancelEcho() {
+  if (echoRaf) { cancelAnimationFrame(echoRaf); echoRaf = null; }
+  if (echoTimer) { clearTimeout(echoTimer); echoTimer = null; }
+  if (echoIdx >= 0) {
+    const overlay = document.getElementById(`echo-${echoIdx}`);
+    if (overlay) overlay.classList.remove('show');
+    document.getElementById(`card-${echoIdx}`)?.classList.remove('echoing');
+    echoIdx = -1;
+  }
+}
+
+function finishEcho(i) {
+  const overlay = document.getElementById(`echo-${i}`);
+  if (overlay) overlay.classList.remove('show');
+  document.getElementById(`card-${i}`)?.classList.remove('echoing');
+  echoIdx = -1;
+  // Auto-start recording
+  toggleRecord(i);
+}
+
+function updateCard(i) {
+  const old=document.getElementById(`card-${i}`);
+  if(old) old.replaceWith(createCard(segments[i],i));
+}
+
+// ─── Split a single segment using local VAD ───────────────────────────
+async function splitSegment(i) {
+  const seg = segments[i];
+  const dur = seg.end - seg.start;
+  if (dur < 1.5) { showToast('片段太短，无法继续分割'); return; }
+
+  const btn = document.getElementById(`card-${i}`)?.querySelector('.btn-split');
+  if (btn) { btn.classList.add('splitting'); btn.innerHTML = '✂ 分割中…'; }
+
+  const buf = mediaMode === 'video' ? videoAudioBuffer : masterBuffer;
+  const sr = buf.sampleRate;
+  const s0 = Math.floor(seg.start * sr);
+  const s1 = Math.min(Math.floor(seg.end * sr), buf.length);
+  const data = buf.getChannelData(0).slice(s0, s1);
+
+  // Energy frames
+  const fSz = Math.floor(sr * 0.02), hop = Math.floor(sr * 0.01);
+  const E = [];
+  for (let k = 0; k + fSz < data.length; k += hop) {
+    let s = 0; for (let j = 0; j < fSz; j++) s += data[k+j]**2;
+    E.push(Math.sqrt(s / fSz));
+  }
+
+  const sorted = [...E].sort((a,b) => a-b);
+  const thr = sorted[Math.floor(sorted.length * 0.25)] * 2.0;
+
+  // Find the longest silence run (lowest energy region) as split point
+  // Exclude first and last 25% to avoid edge cuts
+  const margin = Math.floor(E.length * 0.25);
+  let bestLen = 0, bestMid = -1, runLen = 0, runStart = 0;
+  for (let k = margin; k < E.length - margin; k++) {
+    if (E[k] <= thr) {
+      if (runLen === 0) runStart = k;
+      runLen++;
+      if (runLen > bestLen) { bestLen = runLen; bestMid = runStart + Math.floor(runLen / 2); }
+    } else runLen = 0;
+  }
+
+  if (bestMid < 0 || bestLen < 3) {
+    showToast('找不到合适的分割点，句子已经很连贯');
+    if (btn) { btn.classList.remove('splitting'); btn.innerHTML = '✂ 再切'; }
+    return;
+  }
+
+  const splitT = seg.start + bestMid * 0.01;
+  const newSegs = [
+    { start: seg.start, end: splitT, count: 0, recordings: {}, transcript: null, transcriptStatus: 'idle', transcriptOpen: false },
+    { start: splitT,    end: seg.end, count: 0, recordings: {}, transcript: null, transcriptStatus: 'idle', transcriptOpen: false },
+  ];
+
+  segments.splice(i, 1, ...newSegs);
+  segments = segments.map((s, idx) => ({ ...s, id: idx }));
+  playbackRates = {};
+  segments.forEach((_, idx) => { if (!playbackRates[idx]) playbackRates[idx] = 1.0; });
+
+  renderSentences();
+  showToast('✓ 已分割为 2 段');
+  if (btn) { btn.classList.remove('splitting'); btn.innerHTML = '✂ 再切'; }
+}
+
+// ─── Playback ─────────────────────────────────────────────────────────
+function togglePlay(i) {
+  cancelEcho();
+  if(mediaMode==='video') {
+    if(videoPlayingIdx===i && !videoEl.paused) { stopVideoPlay(); return; }
+    stopVideoPlay(); playVideo(i);
+  } else {
+    if(currentPlayingIdx===i) { stopAudioPlay(); return; }
+    stopAudioPlay(); playAudio(i);
+  }
+}
+
+// ── Video ──
+function playVideo(i) {
+  selectSegment(i);
+  const seg=segments[i]; const rate=playbackRates[i]||1.0;
+  videoEl.playbackRate=rate;
+  videoEl.currentTime=seg.start;
+  videoEl.play();
+  videoPlayingIdx=i;
+  document.getElementById(`card-${i}`)?.classList.add('active');
+  setPlayBtn(i,true);
+  showSegHighlight(i);
+  const dur=(seg.end-seg.start)/rate*1000;
+  clearTimeout(videoStopTimer);
+  videoStopTimer=setTimeout(()=>{
+    videoEl.pause();
+    clearVideoActive(i);
+    videoPlayingIdx=-1;
+    document.getElementById('vcSegHL').style.display='none';
+    startEcho(i);
+  }, dur);
+}
+
+function stopVideoPlay() {
+  clearTimeout(videoStopTimer); videoStopTimer=null;
+  videoEl.pause();
+  if(videoPlayingIdx>=0){ clearVideoActive(videoPlayingIdx); videoPlayingIdx=-1; }
+  document.getElementById('vcSegHL').style.display='none';
+}
+
+function clearVideoActive(i) {
+  document.getElementById(`card-${i}`)?.classList.remove('active');
+  setPlayBtn(i,false);
+}
+
+// ── Audio ──
+function playAudio(i) {
+  selectSegment(i);
+  const seg=segments[i]; const ctx=getAudioCtx();
+  if (ctx.state === 'suspended') ctx.resume(); // iOS: AudioContext starts suspended until a user-gesture resume
+  const src=ctx.createBufferSource();
+  src.buffer=masterBuffer; src.playbackRate.value=playbackRates[i]||1.0;
+  src.connect(ctx.destination);
+  const dur=(seg.end-seg.start)/(playbackRates[i]||1.0);
+  const t0=ctx.currentTime;
+  src.start(0,seg.start,seg.end-seg.start);
+  currentSource=src; currentPlayingIdx=i;
+  document.getElementById(`card-${i}`)?.classList.add('active');
+  setPlayBtn(i,true);
+  const wb=document.getElementById(`wave-${i}`); if(wb) wb.classList.add('show');
+  const wp=document.getElementById(`waveprog-${i}`);
+  let raf; function tick(){
+    const p=Math.min((ctx.currentTime-t0)/dur*100,100);
+    if(wp) wp.style.width=p+'%'; if(p<100) raf=requestAnimationFrame(tick);
+  }
+  raf=requestAnimationFrame(tick);
+  src.onended=()=>{
+    cancelAnimationFrame(raf);
+    if(wp) wp.style.width='0%'; if(wb) wb.classList.remove('show');
+    document.getElementById(`card-${i}`)?.classList.remove('active');
+    setPlayBtn(i,false); currentSource=null; currentPlayingIdx=-1;
+    startEcho(i);
+  };
+}
+
+function stopAudioPlay() {
+  if(currentSource){try{currentSource.stop();}catch(e){} currentSource=null;}
+  if(currentPlayingIdx>=0){
+    const i=currentPlayingIdx;
+    document.getElementById(`card-${i}`)?.classList.remove('active');
+    setPlayBtn(i,false);
+    const wp=document.getElementById(`waveprog-${i}`); if(wp) wp.style.width='0%';
+    const wb=document.getElementById(`wave-${i}`); if(wb) wb.classList.remove('show');
+    currentPlayingIdx=-1;
+  }
+}
+
+function setPlayBtn(i,on){
+  const b=document.getElementById(`play-${i}`); const ic=document.getElementById(`play-icon-${i}`);
+  if(b) b.classList.toggle('playing',on); if(ic) ic.textContent=on?'■':'▶';
+}
+
+// ─── Speed ────────────────────────────────────────────────────────────
+function changeSpeed(i,dir){
+  const cur=playbackRates[i]||1.0; const idx=SPEEDS.indexOf(cur);
+  const ni=Math.max(0,Math.min(SPEEDS.length-1,idx+dir));
+  playbackRates[i]=SPEEDS[ni];
+  const el=document.getElementById(`speed-${i}`); if(el) el.textContent=SPEEDS[ni]+'x';
+  if(mediaMode==='audio'&&currentPlayingIdx===i&&currentSource) currentSource.playbackRate.value=SPEEDS[ni];
+  if(mediaMode==='video'&&videoPlayingIdx===i) videoEl.playbackRate=SPEEDS[ni];
+}
+
+// ─── Recording ───────────────────────────────────────────────────────
+let micStream = null; // keep alive across recordings
+
+async function getMicStream() {
+  if (micStream && micStream.active) return micStream;
+  micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  return micStream;
+}
+
+async function toggleRecord(i){
+  if(recordingIdx===i){stopRecording();return;}
+  if(recordingIdx>=0) stopRecording();
+  if(echoIdx >= 0 && echoIdx !== i) cancelEcho();
+  if(mediaMode==='audio') stopAudioPlay(); else stopVideoPlay();
+  await startRecording(i);
+}
+
+async function startRecording(i){
+  try{
+    const stream = await getMicStream();
+    // iOS Safari only supports audio/mp4; Chrome supports audio/webm
+    const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
+      ? 'audio/webm;codecs=opus'
+      : MediaRecorder.isTypeSupported('audio/mp4')
+      ? 'audio/mp4'
+      : '';
+    recordChunks=[];
+    mediaRecorder = mimeType ? new MediaRecorder(stream, {mimeType}) : new MediaRecorder(stream);
+    const blobType = mimeType || 'audio/webm';
+    mediaRecorder.ondataavailable=e=>{if(e.data.size>0)recordChunks.push(e.data);};
+    mediaRecorder.onstop=()=>{
+      const blob=new Blob(recordChunks,{type:blobType});
+      finishRecording(i,blob);
+    };
+    mediaRecorder.start(); recordingIdx=i;
+    document.getElementById(`card-${i}`)?.classList.add('recording');
+    const btn=document.getElementById(`rec-${i}`);
+    if(btn){btn.classList.add('recording');btn.innerHTML='<span>⏹</span> 停止';}
+  }catch(e){showToast('无法访问麦克风：' + e.message);}
+}
+
+function stopRecording(){
+  if(mediaRecorder&&mediaRecorder.state!=='inactive') mediaRecorder.stop();
+  if(recordingIdx>=0){
+    const i=recordingIdx;
+    document.getElementById(`card-${i}`)?.classList.remove('recording');
+    const btn=document.getElementById(`rec-${i}`);
+    if(btn){btn.classList.remove('recording');btn.innerHTML='<span>🎤</span> 跟读';}
+    recordingIdx=-1;
+  }
+}
+
+function finishRecording(i,blob){
+  const seg=segments[i]; seg.count++;
+  // Save every recording
+  if(!seg.allRecordings) seg.allRecordings=[];
+  seg.allRecordings.push(blob);
+  // Also save milestone recordings
+  if(MILESTONES.includes(seg.count)){seg.recordings[seg.count]=blob;showToast(`🏆 第 ${seg.count} 次跟读已保存`);}
+  if(seg.count===GOAL) showToast(`🎉 第 ${i+1} 句已完成100次！`);
+  updateCard(i);
+}
+
+function playLastRecording(i){
+  const seg=segments[i];
+  if(!seg.allRecordings||!seg.allRecordings.length) return;
+  const blob=seg.allRecordings[seg.allRecordings.length-1];
+  playRecordingBlob(i, blob);
+}
+
+let playbackAudio=null;
+let playbackCardIdx=-1;
+
+function playRecordingBlob(i, blob){
+  // Stop any existing playback
+  if(playbackAudio){playbackAudio.pause();playbackAudio=null;}
+  if(playbackCardIdx>=0) setReplayBtnState(playbackCardIdx,false);
+
+  const url=URL.createObjectURL(blob);
+  const a=new Audio(url);
+  playbackAudio=a;
+  playbackCardIdx=i;
+  setReplayBtnState(i,true);
+  a.play();
+  a.onended=()=>{URL.revokeObjectURL(url);playbackAudio=null;playbackCardIdx=-1;setReplayBtnState(i,false);};
+  a.onerror=()=>{URL.revokeObjectURL(url);playbackAudio=null;playbackCardIdx=-1;setReplayBtnState(i,false);};
+}
+
+function setReplayBtnState(i,playing){
+  const btn=document.getElementById(`replay-${i}`);
+  if(!btn) return;
+  if(playing){btn.classList.add('playing');btn.innerHTML='<span>■</span> 回放';}
+  else{btn.classList.remove('playing');btn.innerHTML='<span>▶</span> 回放';}
+}
+
+function toggleReplay(i){
+  const seg=segments[i];
+  if(!seg.allRecordings||!seg.allRecordings.length){showToast('还没有录音');return;}
+  // If currently playing this card's replay, stop it
+  if(playbackCardIdx===i&&playbackAudio){
+    playbackAudio.pause();playbackAudio=null;playbackCardIdx=-1;setReplayBtnState(i,false);
+    return;
+  }
+  playLastRecording(i);
+}
+
+function playMilestone(i,m){
+  const blob=segments[i]?.recordings[m]; if(!blob) return;
+  const url=URL.createObjectURL(blob); const a=new Audio(url);
+  a.play(); a.onended=()=>URL.revokeObjectURL(url);
+  showToast(`播放第 ${m} 次跟读录音`);
+}
+
+// ─── Transcription (Web Speech API — local, no API key needed) ────────
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+// The "play audio into the recognizer" transcription trick only works in desktop Chromium.
+// iOS Safari either lacks SpeechRecognition or only listens to the mic, so treat it as unusable there.
+const IS_IOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const SR_USABLE = !!SpeechRecognition && !IS_IOS;
+
+// No auto-transcription on load — user clicks 转写 per sentence
+async function transcribeAllSegments() { /* no-op: transcription is on-demand */ }
+
+async function transcribeSegment(i) {
+  if (!SR_USABLE) {
+    const seg = segments[i];
+    seg.transcriptStatus = 'error';
+    seg.transcriptError = IS_IOS
+      ? 'iOS Safari 暂不支持本地转写（此功能依赖桌面版 Chrome 的语音识别）'
+      : '浏览器不支持语音识别，请使用桌面版 Chrome';
+    if (seg.transcriptOpen) renderTranscriptPanel(i);
+    return;
+  }
+  const seg = segments[i];
+  seg.transcriptStatus = 'loading';
+  renderTranscriptPanel(i);
+  const btn = document.getElementById(`tr-btn-${i}`);
+  if (btn) { btn.classList.add('loading'); btn.innerHTML = '<span>✦</span> 转写'; }
+
+  try {
+    const text = await transcribeByPlayback(i);
+    seg.transcript = text || '（未识别到内容）';
+    seg.transcriptStatus = 'done';
+  } catch(e) {
+    seg.transcript = null;
+    seg.transcriptStatus = 'error';
+    seg.transcriptError = e.message;
+  }
+  if (seg.transcriptOpen) renderTranscriptPanel(i);
+  if (btn) {
+    btn.classList.remove('loading');
+    if (seg.transcriptStatus === 'done') { btn.classList.add('done'); btn.innerHTML = '<span>📄</span> 转写'; }
+    else btn.innerHTML = '<span>✦</span> 转写';
+  }
+}
+
+function transcribeByPlayback(i) {
+  return new Promise((resolve, reject) => {
+    const seg = segments[i];
+    const dur = seg.end - seg.start;
+    const ctx = getAudioCtx();
+
+    // Route audio to a MediaStream that SpeechRecognition can listen to
+    const dest = ctx.createMediaStreamDestination();
+    const src = ctx.createBufferSource();
+    const audioBuf = mediaMode === 'video' ? videoAudioBuffer : masterBuffer;
+    src.buffer = audioBuf;
+    src.connect(dest);
+    src.connect(ctx.destination); // also play audibly
+
+    const recog = new SpeechRecognition();
+    recog.continuous = true;
+    recog.interimResults = true;
+    recog.lang = ''; // auto-detect
+
+    let finalText = '', settled = false;
+
+    function done(text) {
+      if (settled) return; settled = true;
+      try { recog.stop(); } catch(e) {}
+      try { src.stop(); } catch(e) {}
+      resolve(text.trim());
+    }
+
+    recog.onresult = e => {
+      let t = '';
+      for (let j = 0; j < e.results.length; j++) t += e.results[j][0].transcript;
+      finalText = t;
+      // Show live result in panel
+      const inner = document.getElementById(`tr-inner-${i}`);
+      if (inner) inner.innerHTML = `<div class="t-loading" style="color:var(--accent2)">🗣 ${finalText}</div>`;
+    };
+    recog.onerror = e => {
+      if (e.error === 'no-speech') { done(finalText); return; }
+      if (!settled) { settled = true; reject(new Error('识别错误: ' + e.error)); }
+    };
+    recog.onend = () => done(finalText);
+
+    recog.start();
+    src.start(0, seg.start, dur);
+    setTimeout(() => done(finalText), (dur + 0.8) * 1000);
+  });
+}
+
+function toggleTranscription(i) {
+  const seg = segments[i];
+  const panel = document.getElementById(`tr-panel-${i}`);
+  seg.transcriptOpen = !seg.transcriptOpen;
+  panel.classList.toggle('open', seg.transcriptOpen);
+  if (seg.transcriptOpen) {
+    renderTranscriptPanel(i);
+    // Auto-start transcription if not yet done
+    if (!seg.transcript && seg.transcriptStatus !== 'loading') {
+      transcribeSegment(i);
+    }
+  }
+}
+
+function renderTranscriptPanel(i) {
+  const seg = segments[i];
+  const inner = document.getElementById(`tr-inner-${i}`); if (!inner) return;
+  if (seg.transcriptStatus === 'done' && seg.transcript)
+    inner.innerHTML = `<button class="t-copy" onclick="copyTranscript(${i})">⎘</button><div class="t-text">${seg.transcript}</div>`;
+  else if (seg.transcriptStatus === 'error')
+    inner.innerHTML = `<div class="t-loading" style="color:#f75f5f">⚠ ${seg.transcriptError || '转写失败'}</div>`;
+  else if (seg.transcriptStatus === 'loading')
+    inner.innerHTML = '<div class="t-loading"><div class="spin"></div> 识别中，正在播放…</div>';
+  else
+    inner.innerHTML = '<div class="t-loading" style="color:var(--text2)">点击展开后自动开始识别</div>';
+}
+
+function copyTranscript(i) {
+  const t = segments[i]?.transcript; if (!t) return;
+  navigator.clipboard.writeText(t).then(() => showToast('已复制到剪贴板'));
+}
+
+// ─── Utils ────────────────────────────────────────────────────────────
+function fmtTime(s){
+  if(!s||isNaN(s)) return '0:00';
+  const m=Math.floor(s/60),ss=Math.floor(s%60);
+  return `${m}:${String(ss).padStart(2,'0')}`;
+}
+
+function resetAll(){
+  if(mediaMode==='audio') stopAudioPlay(); else stopVideoPlay();
+  stopRecording();
+  if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null;}
+  segments=[]; masterBuffer=null; videoAudioBuffer=null;
+  if(videoObjectURL){URL.revokeObjectURL(videoObjectURL);videoObjectURL=null;}
+  videoEl.removeEventListener('timeupdate',onVideoTimeUpdate);
+  videoEl.removeEventListener('ended',onVideoEnded);
+  videoEl.src=''; videoEl.load(); videoEl.style.display='';
+  document.getElementById('workspace').classList.add('audio-mode');
+  document.getElementById('sentences').innerHTML='';
+  document.getElementById('fileInfo').classList.remove('show');
+  document.getElementById('listTitle').style.display='none';
+  uploadZone.style.display=''; fileInput.value='';
+  const alt = document.getElementById('fileInputAlt'); if (alt) alt.value = '';
+  const altR = document.getElementById('fileInputRight'); if (altR) altR.value = '';
+  document.getElementById('emptyHint').classList.add('show');
+}
+
+// ─── Selection & spacebar ─────────────────────────────────────────────
+function selectSegment(i) {
+  // Remove previous selection highlight
+  if (selectedIdx >= 0 && selectedIdx !== i) {
+    document.getElementById(`card-${selectedIdx}`)?.classList.remove('selected');
+  }
+  selectedIdx = i;
+  const card = document.getElementById(`card-${i}`);
+  if (card) {
+    card.classList.add('selected');
+    card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+}
+
+document.addEventListener('keydown', e => {
+  // Ignore when focus is inside an input/button
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON' || e.target.tagName === 'TEXTAREA') return;
+  if (e.code === 'Space') {
+    e.preventDefault();
+    if (selectedIdx < 0) return;
+    // If echo is running for this segment, skip it (starts recording)
+    if (echoIdx === selectedIdx) { skipEcho(selectedIdx); return; }
+    toggleRecord(selectedIdx);
+  }
+});
+
+
+function showToast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+document.getElementById('emptyHint').classList.add('show');
+
+// ─── PWA Setup ────────────────────────────────────────────────────────
+(function() {
+  // Inject manifest as blob (works without a server)
+  const manifest = {
+    name: '影子跟读',
+    short_name: '影子跟读',
+    description: 'Shadow Reading Practice',
+    start_url: '.',
+    display: 'standalone',
+    background_color: '#0a0a0f',
+    theme_color: '#0a0a0f',
+    orientation: 'any',
+    icons: [{
+      src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%230a0a0f'/%3E%3Ccircle cx='256' cy='256' r='160' fill='none' stroke='%234ecdc4' stroke-width='18'/%3E%3Ctext x='256' y='310' font-size='160' text-anchor='middle' fill='white'%3E%F0%9F%8E%A7%3C/text%3E%3C/svg%3E",
+      sizes: '512x512', type: 'image/svg+xml', purpose: 'any maskable'
+    }]
+  };
+  const mblob = new Blob([JSON.stringify(manifest)], {type:'application/json'});
+  const mel = document.getElementById('pwa-manifest');
+  if (mel) mel.href = URL.createObjectURL(mblob);
+
+  // Service Worker for offline font caching
+  if ('serviceWorker' in navigator) {
+    const sw = `
+const CACHE='shadow-v1';
+self.addEventListener('install',()=>self.skipWaiting());
+self.addEventListener('activate',e=>e.waitUntil(clients.claim()));
+self.addEventListener('fetch',e=>{
+  const u=e.request.url;
+  if(u.includes('fonts.googleapis.com')||u.includes('fonts.gstatic.com')){
+    e.respondWith(caches.open(CACHE).then(c=>
+      c.match(e.request).then(r=>r||fetch(e.request).then(nr=>{c.put(e.request,nr.clone());return nr;}))
+    ));
+  }
+});`;
+    const swBlob = new Blob([sw], {type:'application/javascript'});
+    navigator.serviceWorker.register(URL.createObjectURL(swBlob), {scope:'./'}).catch(()=>{});
+  }
+})();
+
+</script>
+</body>
+</html>
