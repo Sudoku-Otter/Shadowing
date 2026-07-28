@@ -181,6 +181,8 @@
 
   .right-scroll {
     flex: 1; overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     padding: 16px 18px 40px;
   }
 
@@ -248,6 +250,10 @@
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--radius); overflow: hidden; transition: border-color 0.2s;
     position: relative;
+    /* Perf: skip layout/paint of off-screen cards so long lists scroll smoothly */
+    contain: layout paint style;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 72px;
   }
   .sentence-card.active { border-color: var(--accent); }
   .sentence-card.recording { border-color: #f75f5f; }
@@ -414,6 +420,36 @@
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* ───────── Mobile layout (phones) ───────── */
+  @media (max-width: 640px) {
+    /* stack video on top, list below; drop the resize divider */
+    .workspace { flex-direction: column; }
+    .divider { display: none !important; }
+    .left-panel {
+      width: auto !important; max-width: none !important;
+      min-width: 0; max-height: 38vh;
+    }
+    .header { padding: 10px 14px; }
+    .right-scroll { padding: 12px 12px 40px; }
+    .upload-zone { padding: 32px 18px; }
+
+    /* roomier, touch-friendly cards */
+    .card-main { grid-template-columns: 20px 1fr auto; gap: 8px; padding: 12px 10px; }
+    .controls { gap: 8px; }
+    .btn { padding: 8px 13px; font-size: 13px; }
+    .btn:active { transform: scale(0.94); }
+    .speed-ctrl { padding: 3px; }
+    .speed-btn { width: 30px; height: 30px; font-size: 16px; }
+    .speed-val { min-width: 36px; font-size: 12px; }
+    .count-ring { width: 40px; height: 40px; }
+    .card-count { min-width: 44px; }
+    .milestones { padding-left: 38px; }
+    .milestone { padding: 6px 12px; font-size: 12px; }
+    .echo-overlay { flex-direction: column; gap: 12px; padding: 0 18px; }
+    /* off-screen placeholder closer to real (wrapped) height */
+    .sentence-card { contain-intrinsic-size: 0 120px; }
+  }
 </style>
 </head>
 <body>
@@ -900,9 +936,6 @@ function createCard(seg,i) {
           <button class="btn btn-replay ${seg.allRecordings&&seg.allRecordings.length?'':'btn-replay-empty'}" id="replay-${i}" onclick="toggleReplay(${i})" ${seg.allRecordings&&seg.allRecordings.length?'':'disabled'}>
             <span>▶</span> 回放
           </button>
-          <button class="btn btn-transcribe ${ts==='done'?'done':ts==='loading'?'loading':''}" id="tr-btn-${i}" onclick="toggleTranscription(${i})"${!SR_USABLE?' style="opacity:0.4" title="iOS Safari 暂不支持本地转写"':''}>
-            <span>${ts==='done'?'📄':'✦'}</span> 转写
-          </button>
           <button class="btn btn-split" onclick="splitSegment(${i})" title="把这句切得更短">✂ 再切</button>
         </div>
       </div>
@@ -919,15 +952,6 @@ function createCard(seg,i) {
     </div>
     <div class="waveform-bar" id="wave-${i}"><div class="waveform-progress" id="waveprog-${i}"></div></div>
     <div class="milestones ${hasMil?'has-data':''}" id="milestones-${i}">${milHTML}</div>
-    <div class="transcription-panel ${seg.transcriptOpen?'open':''}" id="tr-panel-${i}">
-      <div class="transcription-inner" id="tr-inner-${i}">
-        ${ts==='done'&&seg.transcript
-          ?`<button class="t-copy" onclick="copyTranscript(${i})">⎘</button><div class="t-text">${seg.transcript}</div>`
-          :ts==='error'
-          ?`<div class="t-loading" style="color:#f75f5f">⚠ ${seg.transcriptError||'转写失败'}</div>`
-          :'<div class="t-loading"><div class="spin"></div> 转写中…</div>'}
-      </div>
-    </div>
     <div class="echo-overlay" id="echo-${i}" onclick="skipEcho(${i})">
       <div class="echo-ring-wrap">
         <div class="echo-ripple"></div>
